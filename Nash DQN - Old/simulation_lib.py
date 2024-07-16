@@ -1,8 +1,8 @@
 import numpy as np
 from collections import namedtuple
-import random
 import copy
 import torch
+import secrets
 
 """
 Transition object summarizing changes to the environment at each time step
@@ -193,7 +193,7 @@ class ExperienceReplay:
         self.buffer_size = len(self.buffer)
 
     def sample(self, size):
-        return random.sample(self.buffer, min(size, self.buffer_size))
+        return secrets.SystemRandom().sample(self.buffer, min(size, self.buffer_size))
 
     def __len__(self):
         return len(self.buffer)
